@@ -1,0 +1,74 @@
+{
+	"name": "epic-content",
+	"description": "Content management for the EPIC Framework.",
+	"version": "0.0.0-development",
+	"repository": "github:tobua/epic-content",
+	"license": "CC-BY-NC-4.0",
+	"author": "Matthias Giger",
+	"scripts": {
+		"check": "biome check --write .",
+		"types": "tsc && tsc --noEmit --project ./test/tsconfig.json"
+	},
+	"dependencies": {
+		"epic-jsx": "^0.9.3",
+		"epic-tag": "^0.6.0"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "^1.9.4",
+		"@happy-dom/global-registrator": "^15.7.4",
+		"@types/bun": "^1.1.12",
+		"@types/react": "^18.3.12",
+		"typescript": "^5.6.3",
+		"zero-configuration": "^0.17.5"
+	},
+	"trustedDependencies": ["zero-configuration"],
+	"type": "module",
+	"sideEffects": false,
+	"exports": {
+		"./ui": "./ui.tsx",
+		"./client": "./client.tsx"
+	},
+	"files": ["*.ts", "*.tsx"],
+	"keywords": ["epic", "content", "data"],
+	"publishConfig": {
+		"provenance": false
+	},
+	"configuration": {
+		"gitignore": "recommended",
+		"vscode": "biome",
+		"license": "commercial",
+		"biome": {
+			"extends": "recommended",
+			"files": {
+				"ignore": ["demo"]
+			}
+		},
+		"typescript": [
+			{
+				"extends": "plugin",
+				"compilerOptions": {
+					"jsx": "react-jsx",
+					"paths": {
+						"react": ["./node_modules/epic-jsx"],
+						"react/jsx-runtime": ["./node_modules/epic-jsx"],
+						"react/jsx-dev-runtime": ["./node_modules/epic-jsx"]
+					}
+				},
+				"files": ["ui.tsx", "client.tsx"]
+			},
+			{
+				"extends": "plugin",
+				"folder": "test",
+				"compilerOptions": {
+					"strict": false,
+					"paths": {
+						"react": ["../node_modules/epic-jsx"],
+						"react/jsx-runtime": ["../node_modules/epic-jsx"],
+						"react/jsx-dev-runtime": ["../node_modules/epic-jsx"]
+					},
+					"jsx": "react-jsx"
+				}
+			}
+		]
+	}
+}
