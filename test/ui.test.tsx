@@ -7,7 +7,7 @@ import { Richtext } from '../ui'
 afterEach(unmountAll)
 
 test('Content UI components are available.', () => {
-  const result = render(<Richtext />)
+  const { serialized } = render(<Richtext />)
 
-  expect(result).toBeDefined()
+  expect(serialized).toContain('This is the content')
 })

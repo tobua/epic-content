@@ -7,7 +7,7 @@ import { Slot } from '../client'
 afterEach(unmountAll)
 
 test('Renders client slots with content inside.', () => {
-  const result = render(
+  const { serialized } = render(
     <div>
       <Slot>
         <p>content</p>
@@ -15,5 +15,5 @@ test('Renders client slots with content inside.', () => {
     </div>,
   )
 
-  expect(result).toBeDefined()
+  expect(serialized).toEqual('<body><div><div><p>content</p></div></div></body>')
 })
